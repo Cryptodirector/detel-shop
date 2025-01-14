@@ -8,8 +8,8 @@ router = APIRouter()
 
 fake_users_db = {
     "andery": {
-        "username": "andery",
-        "password": "Andery_Admin_13.01.2025",
+        "username": "",
+        "password": "",
     }
 }
 
