@@ -44,6 +44,6 @@ async def protected_page(request: Request, response: Response):
     if not session_token or session_token not in active_sessions:
         return False
     username = active_sessions[session_token]
-    if username != "andery":
+    if username != "":
         return False
     return True
