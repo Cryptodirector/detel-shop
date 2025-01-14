@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="{{ url_for('static', path='css/style.css') }}" rel="stylesheet">
+</head>
+<body>
+    <div class="admin-block">
+        <h2>Изменить продукт</h2>
+        {% for category in categories %}
+        <form action="https://detel-shop.ru/category/check/{{ category.id }}/update" method="post">
+
+            <label for="product-name">Название категории</label>
+            <input type="text" id="product-name" value="{{ category.title }}" name="title" required>
+
+        {% endfor %}
+
+            <button type="submit">Изменить</button>
+        </form>
+    </div>
+</body>
+</html>

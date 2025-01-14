@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="head2">
+    </div>
+
+    <div class="h2-block">
+
+    </div>
+    <div class="layout">
+        <aside class="catalog">
+            <ul>
+                <li><a href="https://detel-shop.ru">Все товары</a></li>
+                {% for i in categories %}
+                    <li><a href="https://detel-shop.ru/category/{{ i.id }}">{{ i.title }}</a></li>
+                {% endfor %}
+            </ul>
+        </aside>
+        <div class="product-container">
+            {% for p in products %}
+                <div class="product-block">
+                    <div class="product-image">
+                        <img src="{{ p.url_photo }}" alt="Product Image">
+                    </div>
+                    <div class="product-info">
+                        <h2 class="product-name">{{ p.name }}</h2>
+                        <h2 class="product-name">Размер: {{ p.size }} см.</h2>
+                        <p class="product-price">Цена: {{ p.price }} руб.</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

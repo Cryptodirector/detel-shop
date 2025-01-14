@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="{{ url_for('static', path='css/style.css') }}" rel="stylesheet">
+</head>
+<body>
+    <div class="admin-block">
+        <h2>Изменить продукт</h2>
+        {% for p in prod %}
+        <form action="https://detel-shop.ru/product/{{ p.id }}/update" method="post">
+
+                <label for="product-name">Название продукта</label>
+                <input type="text" id="product-name" value="{{ p.name }}" name="name" required>
+
+                <label for="product-category">Категория</label>
+                <select id="product-category" name="id_categories" required>
+                    {% for category in categories %}
+                    <option value="{{ category.id }}" name="id_categories">{{ category.title }}</option>
+                    {% endfor %}
+                </select>
+
+                <br>
+                <br>
+                <label for="product-price">Цена</label>
+                <input type="number" id="product-price" value="{{ p.price }}" name="price" step="0.01" required>
+
+                <label for="product-size">Размер</label>
+                <input type="text" id="product-size" value="{{ p.size }}" name="size" step="0.01">
+
+                <label for="product-photo">Фото</label>
+                <input type="text" id="product-photo" value="{{ p.url_photo }}" name="url_photo" step="0.01">
+        {% endfor %}
+
+            <button type="submit">Изменить</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link href="{{ url_for('static', path='css/style.css') }}" rel="stylesheet">
+</head>
+
+<body>
+
+    <a href="https://detel-shop.ru">На Главную</a>
+    <div class="admin-container">
+        <!-- Блок создания категории -->
+        <div class="admin-block">
+            <h2>Создание категории</h2>
+            <form action="/category/add" method="post">
+                <label for="category-name">Название категории</label>
+                <input type="text" id="category-name" name="title" required>
+                <button type="submit">Создать</button>
+            </form>
+        </div>
+
+
+        <!-- Блок создания продукта -->
+        <div class="admin-block">
+            <h2>Создание продукта</h2>
+            <form action="https://detel-shop.ru/product/add" method="post">
+                <label for="product-name">Название продукта</label>
+                <input type="text" id="product-name" name="name" required>
+
+                <label for="product-category">Категория</label>
+                <select id="product-category" name="id_categories" required>
+                    {% for category in categories %}
+                    <option value="{{ category.id }}" name="id_categories">{{ category.title }}</option>
+                    {% endfor %}
+                </select>
+
+                <br>
+                <br>
+                <label for="product-price">Цена</label>
+                <input type="number" id="product-price" name="price" step="0.01" required>
+
+                <label for="product-size">Размер</label>
+                <input type="text" id="product-size" name="size" step="0.01">
+
+                <label for="product-photo">Фото</label>
+                <input type="number" id="product-photo" name="url_photo" step="0.01">
+
+                <button type="submit">Создать продукт</button>
+            </form>
+
+        </div>
+        <div class="admin-block">
+            <h2>Условия работы </h2>
+            <form action="https://detel-shop.ru/job_text/update" method="post">
+                <label for="category-name">Описание</label>
+                <input type="text" id="text" name="text" required>
+                <button type="submit">Создать</button>
+            </form>
+        </div>
+        <div class="admin-block">
+            <h2>Оплата и доставка</h2>
+            <form action="https://detel-shop.ru/payment/update" method="post">
+                <label for="category-name">Описание</label>
+                <input type="text" id="category-name" name="text" required>
+                <button type="submit">Создать</button>
+            </form>
+        </div>
+        <div class="admin-block">
+            <h2>Контакты</h2>
+            <form action="https://detel-shop.ru/contact/update" method="post">
+                <label for="category-name">Описание</label>
+                <input type="text" id="category-name" name="text" required>
+                <button type="submit">Создать</button>
+            </form>
+        </div>
+
+    </div>
+
+    <div class="table-container">
+        <h2>Список категорий</h2>
+        <table>
+
+            <thead>
+                <tr>
+                    <th>Наименование</th>
+                    <th>Действие</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for category in categories %}
+                <tr>
+                    <td>{{ category.title }}</td>
+                    <td>
+                        <form action="https://detel-shop.ru/category/check/{{ category.id }}" method="get" style="display:inline;">
+                            <button type="submit" class="edit-button">Изменить</button>
+                        </form>
+                        <form action="https://detel-shop.ru/category/{{ category.id }}/delete" method="post" style="display:inline;">
+                            <button type="submit" class="delete-button">Удалить</button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+            {% endfor %}
+        </table>
+    </div>
+    <div class="table-container">
+        <h2>Список продуктов</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Фото</th>
+                    <th>Наименование</th>
+                    <th>Размер</th>
+                    <th>Цена</th>
+                    <th>Категория</th>
+                    <th>Действия</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in products %}
+                <tr>
+                    <td><img src="{{ product.url_photo }}" class="product-image"></td>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.size }}</td>
+                    <td>{{ product.price }} ₽</td>
+                    <td>{{ product.title }}</td>
+                    <td>
+                        <form action="https://detel-shop.ru/product/{{ product.id }}" method="get" style="display:inline;">
+                            <button type="submit" class="edit-button">Изменить</button>
+                        </form>
+                        <form action="https://detel-shop.ru/product/{{ product.id }}/delete" method="post" style="display:inline;">
+                            <button type="submit" class="delete-button">Удалить</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

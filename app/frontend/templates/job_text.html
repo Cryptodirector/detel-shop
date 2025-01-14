@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Условия работы</title>
+    <link href="{{ url_for('static', path='css/style.css') }}" rel="stylesheet">
+</head>
+<body>
+  <div class="terms-container">
+    <header class="header">
+      <h1>Условия работы</h1>
+    </header>
+    <main class="terms-content">
+      {% for job in jobs %}
+        <p>{{ job.text }}</p>
+      {% endfor %}
+    </main>
+  </div>
+</body>
+</html>
